@@ -24024,7 +24024,7 @@ GameObject:
   - component: {fileID: 832575518}
   - component: {fileID: 832575520}
   m_Layer: 0
-  m_Name: Global Volume
+  m_Name: Global Vol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
