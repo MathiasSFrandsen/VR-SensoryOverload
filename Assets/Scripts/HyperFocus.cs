@@ -1,8 +1,18 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class HyperFocus : MonoBehaviour
 {
+    [Header("Visual Focus")]
+    [SerializeField] private Volume globalVolume; // Global Volume med DoF override
+    [SerializeField] private float dofNormalFocusDistance = 10f;
+    [SerializeField] private float dofTransitionSpeed = 1f;
+    [SerializeField] private float dofFocusedAperture = 8f;
+    [SerializeField] private float dofNormalAperture = 32f;
+    private DepthOfField dof;
+
     [Header("Raycast Settings")]
     [SerializeField] private float maxDistance = 10f;
     [SerializeField] private LayerMask interactLayer;
@@ -41,42 +51,36 @@ public class HyperFocus : MonoBehaviour
 
     void Start()
     {
-        // Initialize current values to normal state
-        currentFocusedVolume = normalFocusedVolume;
-        currentUnfocusedVolume = normalUnfocusedVolume;
-        currentLowpass = normalLowpass;
-
-        // Find all audio sources
-        allAudioSources = FindObjectsOfType<AudioSource>();
-
-        // Cache mixer groups (avoid doing this every frame!)
-        focusedGroup = mixer.FindMatchingGroups("Focused")[0];
-        unfocusedGroup = mixer.FindMatchingGroups("Unfocused")[0];
+        InitializeAudio();
+        InitializeVisuals();
     }
 
     void Update()
     {
         HandleRaycast();
+        UpdateAudio();
+        UpdateVisualFocus();
+    }
+
+    #region Audio Methods
+
+    void InitializeAudio()
+    {
+        currentFocusedVolume = normalFocusedVolume;
+        currentUnfocusedVolume = normalUnfocusedVolume;
+        currentLowpass = normalLowpass;
+
+        allAudioSources = FindObjectsOfType<AudioSource>();
+
+        focusedGroup = mixer.FindMatchingGroups("Focused")[0];
+        unfocusedGroup = mixer.FindMatchingGroups("Unfocused")[0];
+    }
+
+    void UpdateAudio()
+    {
         UpdateAudioTargets();
         ApplyAudio();
         UpdateAudioSourceGroups();
-    }
-
-    void HandleRaycast()
-    {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, maxDistance, interactLayer))
-        {
-            if (hit.collider.GetComponent<AudioSource>() != null)
-            {
-                currentTarget = hit.collider.gameObject;
-                return;
-            }
-        }
-
-        currentTarget = null;
     }
 
     void UpdateAudioTargets()
@@ -112,5 +116,50 @@ public class HyperFocus : MonoBehaviour
                 src.outputAudioMixerGroup = unfocusedGroup;
             }
         }
+    }
+
+    #endregion
+
+    #region Visual Methods
+
+    void InitializeVisuals()
+    {
+        if (globalVolume != null)
+        {
+            globalVolume.profile.TryGet<DepthOfField>(out dof);
+        }
+    }
+
+    void UpdateVisualFocus()
+    {
+        if (dof == null) return;
+
+        float targetFocusDistance = currentTarget != null
+            ? Vector3.Distance(Camera.main.transform.position, currentTarget.transform.position)
+            : dofNormalFocusDistance;
+
+        dof.focusDistance.value = Mathf.Lerp(dof.focusDistance.value, targetFocusDistance, Time.deltaTime * dofTransitionSpeed);
+
+        float targetAperture = currentTarget != null ? dofFocusedAperture : dofNormalAperture;
+        dof.aperture.value = Mathf.Lerp(dof.aperture.value, targetAperture, Time.deltaTime * dofTransitionSpeed);
+    }
+
+    #endregion
+
+    void HandleRaycast()
+    {
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, maxDistance, interactLayer))
+        {
+            if (hit.collider.GetComponent<AudioSource>() != null)
+            {
+                currentTarget = hit.collider.gameObject;
+                return;
+            }
+        }
+
+        currentTarget = null;
     }
 }

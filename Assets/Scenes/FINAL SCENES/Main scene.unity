@@ -85077,6 +85077,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a86b97f6fcef145b8b8dfd39910870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalVolume: {fileID: 832575518}
+  dofNormalFocusDistance: 10
+  dofTransitionSpeed: 1
+  dofFocusedAperture: 8
+  dofNormalAperture: 32
   maxDistance: 100
   interactLayer:
     serializedVersion: 2
