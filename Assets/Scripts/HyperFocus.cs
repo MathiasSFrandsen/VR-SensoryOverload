@@ -4,73 +4,112 @@ using UnityEngine.Audio;
 public class HyperFocus : MonoBehaviour
 {
     [Header("Raycast Settings")]
-    public float maxDistance = 10f;
-    public LayerMask interactLayer;
+    [SerializeField] private float maxDistance = 10f;
+    [SerializeField] private LayerMask interactLayer;
 
     [Header("Audio Mixer")]
-    public AudioMixer mixer;
+    [SerializeField] private AudioMixer mixer;
 
-    // Smooth values
-    private float focusedVol = 0f;
-    private float unfocusedVol = 0f;
-    private float lowpass = 22000f;
+    [Header("Normal State (No Focus)")]
+    [SerializeField] private float normalFocusedVolume = 0f;
+    [SerializeField] private float normalUnfocusedVolume = 0f;
+    [SerializeField] private float normalLowpass = 22000f;
+
+    [Header("Focus State")]
+    [SerializeField] private float focusFocusedVolume = 8f;
+    [SerializeField] private float focusUnfocusedVolume = -20f;
+    [SerializeField] private float focusLowpass = 800f;
+
+    [Header("Transition Settings")]
+    [SerializeField] private float transitionSpeed = 1f;
+
+    [Header("Audio Mixer Parameters")]
+    [SerializeField] private string focusedVolumeParam = "VolumeFocused";
+    [SerializeField] private string unfocusedVolumeParam = "VolumeUnfocused";
+    [SerializeField] private string lowpassParam = "UnfocusedLowpass";
+
+    // Current (smoothed runtime values)
+    private float currentFocusedVolume;
+    private float currentUnfocusedVolume;
+    private float currentLowpass;
 
     private GameObject currentTarget;
-    [SerializeField] private AudioSource[] allAudioSources;
+    private AudioSource[] allAudioSources;
+
+    private AudioMixerGroup focusedGroup;
+    private AudioMixerGroup unfocusedGroup;
 
     void Start()
     {
-        // Find alle lydkilder på scenen
+        // Initialize current values to normal state
+        currentFocusedVolume = normalFocusedVolume;
+        currentUnfocusedVolume = normalUnfocusedVolume;
+        currentLowpass = normalLowpass;
+
+        // Find all audio sources
         allAudioSources = FindObjectsOfType<AudioSource>();
+
+        // Cache mixer groups (avoid doing this every frame!)
+        focusedGroup = mixer.FindMatchingGroups("Focused")[0];
+        unfocusedGroup = mixer.FindMatchingGroups("Unfocused")[0];
     }
 
     void Update()
     {
-        // Raycast frem fra kamera
+        HandleRaycast();
+        UpdateAudioTargets();
+        ApplyAudio();
+        UpdateAudioSourceGroups();
+    }
+
+    void HandleRaycast()
+    {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, maxDistance, interactLayer))
         {
-            // Hvis objektet har AudioSource
-            if (hit.collider.gameObject != currentTarget && hit.collider.GetComponent<AudioSource>() != null)
+            if (hit.collider.GetComponent<AudioSource>() != null)
             {
                 currentTarget = hit.collider.gameObject;
-                Debug.Log("Hello");
+                return;
             }
         }
-        else
-        {
-            currentTarget = null;
-        }
 
-        // Target values
-        float targetFocused = currentTarget != null ? 0f : 0f;      // dB for focused lyd
-        float targetUnfocused = currentTarget != null ? -20f : 0f;  // dB for unfocused
-        float targetLowpass = currentTarget != null ? 800f : 22000f;
+        currentTarget = null;
+    }
 
-        // Smooth transitions
-        focusedVol = Mathf.Lerp(focusedVol, targetFocused, Time.deltaTime * 3f);
-        unfocusedVol = Mathf.Lerp(unfocusedVol, targetUnfocused, Time.deltaTime * 3f);
-        lowpass = Mathf.Lerp(lowpass, targetLowpass, Time.deltaTime * 3f);
+    void UpdateAudioTargets()
+    {
+        bool isFocusing = currentTarget != null;
 
-        // Sæt mixer parametre
-        mixer.SetFloat("VolumeFocused", focusedVol);
-        mixer.SetFloat("VolumeUnfocused", unfocusedVol);
-        mixer.SetFloat("UnfocusedLowpass", lowpass);
+        float targetFocused = isFocusing ? focusFocusedVolume : normalFocusedVolume;
+        float targetUnfocused = isFocusing ? focusUnfocusedVolume : normalUnfocusedVolume;
+        float targetLowpass = isFocusing ? focusLowpass : normalLowpass;
 
-        // Opdater AudioSource output (alternativ metode)
+        currentFocusedVolume = Mathf.Lerp(currentFocusedVolume, targetFocused, Time.deltaTime * transitionSpeed);
+        currentUnfocusedVolume = Mathf.Lerp(currentUnfocusedVolume, targetUnfocused, Time.deltaTime * transitionSpeed);
+        currentLowpass = Mathf.Lerp(currentLowpass, targetLowpass, Time.deltaTime * transitionSpeed);
+    }
+
+    void ApplyAudio()
+    {
+        mixer.SetFloat(focusedVolumeParam, currentFocusedVolume);
+        mixer.SetFloat(unfocusedVolumeParam, currentUnfocusedVolume);
+        mixer.SetFloat(lowpassParam, currentLowpass);
+    }
+
+    void UpdateAudioSourceGroups()
+    {
         foreach (AudioSource src in allAudioSources)
         {
             if (currentTarget != null && src.gameObject == currentTarget)
             {
-                // Sørg for den går til Focused gruppen
-                src.outputAudioMixerGroup = mixer.FindMatchingGroups("Focused")[0];
+                src.outputAudioMixerGroup = focusedGroup;
             }
             else
             {
-                // Alle andre til Unfocused
-                src.outputAudioMixerGroup = mixer.FindMatchingGroups("Unfocused")[0];
+                src.outputAudioMixerGroup = unfocusedGroup;
             }
         }
     }
