@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class FadeToBlack : MonoBehaviour
 {
@@ -10,8 +9,6 @@ public class FadeToBlack : MonoBehaviour
     [SerializeField] public float blackHoldDuration = 2f;
     [SerializeField] public float startFadeAfter = 60f; // Time before fade begins
 
-    [Header("Scene Settings")]
-    public string nextSceneName = "EndScene"; // Name of the scene to load
 
     private void Awake()
     {
@@ -42,14 +39,12 @@ public class FadeToBlack : MonoBehaviour
             yield return null;
         }
 
-        // Ensure it’s fully black
+        // Ensure it?s fully black
         color.a = 1f;
         panel.color = color;
 
         // Hold the black screen briefly
         yield return new WaitForSeconds(blackHoldDuration);
 
-        // Load the next scene
-        //SceneManager.LoadScene(nextSceneName);
     }
 }
