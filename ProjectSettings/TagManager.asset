@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - LightTrigger
+  - TargetObject
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - FocusObject
   - Water
   - UI
   - 

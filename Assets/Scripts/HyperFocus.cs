@@ -6,16 +6,20 @@ using UnityEngine.Rendering.Universal;
 public class HyperFocus : MonoBehaviour
 {
     [Header("Visual Focus")]
-    [SerializeField] private Volume globalVolume; // Global Volume med DoF override
-    [SerializeField] private float dofNormalFocusDistance = 10f;
-    [SerializeField] private float dofTransitionSpeed = 1f;
-    [SerializeField] private float dofFocusedAperture = 8f;
-    [SerializeField] private float dofNormalAperture = 32f;
+    [SerializeField] private Volume globalVolume;
     private DepthOfField dof;
+
+    [Header("Focus Rendering")]
+    [SerializeField] private string focusLayerName = "FocusObject";
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Camera focusCamera;
+
+    private int focusLayer;
+    private int defaultLayer;
 
     [Header("Raycast Settings")]
     [SerializeField] private float maxDistance = 10f;
-    [SerializeField] private LayerMask interactLayer;
+    [SerializeField] private string tagName = "TargetObject";
 
     [Header("Audio Mixer")]
     [SerializeField] private AudioMixer mixer;
@@ -30,15 +34,12 @@ public class HyperFocus : MonoBehaviour
     [SerializeField] private float focusUnfocusedVolume = -20f;
     [SerializeField] private float focusLowpass = 800f;
 
-    [Header("Transition Settings")]
-    [SerializeField] private float transitionSpeed = 1f;
-
-    [Header("Audio Mixer Parameters")]
+    [Header("Audio Settings")]
+    [SerializeField] private float audioTransitionSpeed = 2f;
     [SerializeField] private string focusedVolumeParam = "VolumeFocused";
     [SerializeField] private string unfocusedVolumeParam = "VolumeUnfocused";
     [SerializeField] private string lowpassParam = "UnfocusedLowpass";
 
-    // Current (smoothed runtime values)
     private float currentFocusedVolume;
     private float currentUnfocusedVolume;
     private float currentLowpass;
@@ -51,21 +52,11 @@ public class HyperFocus : MonoBehaviour
 
     void Start()
     {
-        InitializeAudio();
-        InitializeVisuals();
-    }
+        // Layers
+        focusLayer = LayerMask.NameToLayer(focusLayerName);
+        defaultLayer = LayerMask.NameToLayer("Water");
 
-    void Update()
-    {
-        HandleRaycast();
-        UpdateAudio();
-        UpdateVisualFocus();
-    }
-
-    #region Audio Methods
-
-    void InitializeAudio()
-    {
+        // Audio setup
         currentFocusedVolume = normalFocusedVolume;
         currentUnfocusedVolume = normalUnfocusedVolume;
         currentLowpass = normalLowpass;
@@ -74,16 +65,29 @@ public class HyperFocus : MonoBehaviour
 
         focusedGroup = mixer.FindMatchingGroups("Focused")[0];
         unfocusedGroup = mixer.FindMatchingGroups("Unfocused")[0];
+
+        // DOF setup (safe)
+        if (globalVolume != null && globalVolume.profile != null)
+        {
+            globalVolume.profile.TryGet(out dof);
+        }
     }
+
+    void Update()
+    {
+        HandleRaycast();
+        UpdateAudio();
+        UpdateDOF();
+    }
+
+    void LateUpdate()
+    {
+        SyncCameras();
+    }
+
+    #region Audio
 
     void UpdateAudio()
-    {
-        UpdateAudioTargets();
-        ApplyAudio();
-        UpdateAudioSourceGroups();
-    }
-
-    void UpdateAudioTargets()
     {
         bool isFocusing = currentTarget != null;
 
@@ -91,75 +95,96 @@ public class HyperFocus : MonoBehaviour
         float targetUnfocused = isFocusing ? focusUnfocusedVolume : normalUnfocusedVolume;
         float targetLowpass = isFocusing ? focusLowpass : normalLowpass;
 
-        currentFocusedVolume = Mathf.Lerp(currentFocusedVolume, targetFocused, Time.deltaTime * transitionSpeed);
-        currentUnfocusedVolume = Mathf.Lerp(currentUnfocusedVolume, targetUnfocused, Time.deltaTime * transitionSpeed);
-        currentLowpass = Mathf.Lerp(currentLowpass, targetLowpass, Time.deltaTime * transitionSpeed);
-    }
+        currentFocusedVolume = Mathf.Lerp(currentFocusedVolume, targetFocused, Time.deltaTime * audioTransitionSpeed);
+        currentUnfocusedVolume = Mathf.Lerp(currentUnfocusedVolume, targetUnfocused, Time.deltaTime * audioTransitionSpeed);
+        currentLowpass = Mathf.Lerp(currentLowpass, targetLowpass, Time.deltaTime * audioTransitionSpeed);
 
-    void ApplyAudio()
-    {
         mixer.SetFloat(focusedVolumeParam, currentFocusedVolume);
         mixer.SetFloat(unfocusedVolumeParam, currentUnfocusedVolume);
         mixer.SetFloat(lowpassParam, currentLowpass);
-    }
 
-    void UpdateAudioSourceGroups()
-    {
         foreach (AudioSource src in allAudioSources)
         {
-            if (currentTarget != null && src.gameObject == currentTarget)
-            {
-                src.outputAudioMixerGroup = focusedGroup;
-            }
-            else
-            {
-                src.outputAudioMixerGroup = unfocusedGroup;
-            }
+            src.outputAudioMixerGroup =
+                (currentTarget != null && src.gameObject == currentTarget)
+                ? focusedGroup
+                : unfocusedGroup;
         }
     }
 
     #endregion
 
-    #region Visual Methods
+    #region Visual DOF
 
-    void InitializeVisuals()
-    {
-        if (globalVolume != null)
-        {
-            globalVolume.profile.TryGet<DepthOfField>(out dof);
-        }
-    }
-
-    void UpdateVisualFocus()
+    void UpdateDOF()
     {
         if (dof == null) return;
 
-        float targetFocusDistance = currentTarget != null
-            ? Vector3.Distance(Camera.main.transform.position, currentTarget.transform.position)
-            : dofNormalFocusDistance;
+        if (currentTarget == null)
+        {
+            // Normal VR (ingen blur)
+            dof.focalLength.value = 1f;
+            dof.focusDistance.value = 1f;
+        }
+        else
+        {
+            // Fokus på target → blur baggrund
+            dof.focalLength.value = 300f;
+        }
+    }
 
-        dof.focusDistance.value = Mathf.Lerp(dof.focusDistance.value, targetFocusDistance, Time.deltaTime * dofTransitionSpeed);
-
-        float targetAperture = currentTarget != null ? dofFocusedAperture : dofNormalAperture;
-        dof.aperture.value = Mathf.Lerp(dof.aperture.value, targetAperture, Time.deltaTime * dofTransitionSpeed);
+    void SyncCameras()
+    {
+        if (focusCamera != null && mainCamera != null)
+        {
+            focusCamera.transform.position = mainCamera.transform.position;
+            focusCamera.transform.rotation = mainCamera.transform.rotation;
+        }
     }
 
     #endregion
+
+    #region Raycast
 
     void HandleRaycast()
     {
         Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, maxDistance, interactLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance))
         {
-            if (hit.collider.GetComponent<AudioSource>() != null)
+            // Tjek kun tag, ikke layer
+            if (hit.collider.CompareTag(tagName))
             {
-                currentTarget = hit.collider.gameObject;
+                SetNewTarget(hit.collider.gameObject);
                 return;
             }
         }
 
-        currentTarget = null;
+        SetNewTarget(null);
     }
+
+    void SetNewTarget(GameObject newTarget)
+    {
+        if (newTarget == currentTarget) return;
+
+        if (currentTarget != null)
+            SetLayerRecursively(currentTarget, defaultLayer);
+
+        if (newTarget != null)
+            SetLayerRecursively(newTarget, focusLayer);
+
+        currentTarget = newTarget;
+    }
+
+    void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
+    }
+
+    #endregion
 }

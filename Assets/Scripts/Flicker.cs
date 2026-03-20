@@ -4,7 +4,7 @@ using System.Collections;
 public class Flicker : MonoBehaviour
 {
     [Header("Light & Renderer")]
-    public Light tubeLight;
+    public Light[] tubeLights; // Flere lys
     public MeshRenderer tubeRenderer;
     public Material litMaterial;
     public Material unlitMaterial;
@@ -17,8 +17,8 @@ public class Flicker : MonoBehaviour
 
     private void Start()
     {
-        if (tubeLight == null)
-            tubeLight = GetComponentInChildren<Light>();
+        if (tubeLights == null || tubeLights.Length == 0)
+            tubeLights = GetComponentsInChildren<Light>();
 
         if (tubeRenderer == null)
             tubeRenderer = GetComponent<MeshRenderer>();
@@ -30,17 +30,25 @@ public class Flicker : MonoBehaviour
     {
         while (true)
         {
-            // Lyset tænder + materialeskift
-            tubeLight.enabled = true;
+            // Tænd alle lys + skift materiale
+            SetLights(true);
             tubeRenderer.material = litMaterial;
             float onTime = Random.Range(minOnTime, maxOnTime);
             yield return new WaitForSeconds(onTime);
 
-            // Lyset slukker + materialeskift
-            tubeLight.enabled = false;
+            // Sluk alle lys + skift materiale
+            SetLights(false);
             tubeRenderer.material = unlitMaterial;
             float offTime = Random.Range(minOffTime, maxOffTime);
             yield return new WaitForSeconds(offTime);
+        }
+    }
+
+    private void SetLights(bool state)
+    {
+        foreach (Light l in tubeLights)
+        {
+            l.enabled = state;
         }
     }
 }
