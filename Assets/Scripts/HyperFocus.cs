@@ -122,14 +122,34 @@ public class HyperFocus : MonoBehaviour
 
         if (currentTarget == null)
         {
-            // Normal VR (ingen blur)
-            dof.focalLength.value = 1f;
+            // Blur → ingen blur (f.eks. hurtigere)
+            float targetFocalLength = 1f;
+            float smoothOutSpeed = 1f; // hastighed tilbage til normal
+
+            dof.focalLength.value = Mathf.Lerp(
+                dof.focalLength.value,
+                targetFocalLength,
+                1 - Mathf.Exp(-smoothOutSpeed * Time.deltaTime)
+            );
+            Debug.Log("FocalLength: " + dof.focalLength.value);
+
+            // Fokusdistancen holdes konstant
             dof.focusDistance.value = 1f;
         }
         else
         {
-            // Fokus på target → blur baggrund
-            dof.focalLength.value = 300f;
+            // Ingen blur → blur (f.eks. langsommere)
+            float targetFocalLength = 80f;
+            float smoothInSpeed = 0.3f; // hastighed frem mod blur
+
+            dof.focalLength.value = Mathf.Lerp(
+                dof.focalLength.value,
+                targetFocalLength,
+                1 - Mathf.Exp(-smoothInSpeed * Time.deltaTime)
+            );
+            Debug.Log("FocalLength: " + dof.focalLength.value);
+            // Fokusdistancen holdes konstant
+            dof.focusDistance.value = 1f;
         }
     }
 
