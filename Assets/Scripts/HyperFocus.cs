@@ -124,7 +124,7 @@ public class HyperFocus : MonoBehaviour
         {
             // Blur → ingen blur (f.eks. hurtigere)
             float targetFocalLength = 1f;
-            float smoothOutSpeed = 1f; // hastighed tilbage til normal
+            float smoothOutSpeed = 2f; // hastighed tilbage til normal
 
             dof.focalLength.value = Mathf.Lerp(
                 dof.focalLength.value,
@@ -134,13 +134,13 @@ public class HyperFocus : MonoBehaviour
             Debug.Log("FocalLength: " + dof.focalLength.value);
 
             // Fokusdistancen holdes konstant
-            dof.focusDistance.value = 1f;
+            dof.focusDistance.value = 0.1f;
         }
         else
         {
             // Ingen blur → blur (f.eks. langsommere)
             float targetFocalLength = 80f;
-            float smoothInSpeed = 0.3f; // hastighed frem mod blur
+            float smoothInSpeed = 0.1f; // hastighed frem mod blur
 
             dof.focalLength.value = Mathf.Lerp(
                 dof.focalLength.value,
@@ -149,7 +149,7 @@ public class HyperFocus : MonoBehaviour
             );
             Debug.Log("FocalLength: " + dof.focalLength.value);
             // Fokusdistancen holdes konstant
-            dof.focusDistance.value = 1f;
+            dof.focusDistance.value = 0.1f;
         }
     }
 
