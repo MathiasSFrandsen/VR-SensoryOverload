@@ -572,12 +572,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NPCIdleController
   animator: {fileID: 614535752}
   minIdleIndex: 1
-  maxIdleIndex: 5
+  maxIdleIndex: 4
   randomizeSwitch: 1
   canTalk: 0
   isSpecialStudent: 0
-  talkTime: 60
-  talkDirection: 0
+  talkTime: 20
+  talkDirection: 1
 --- !u!1001 &1338044120
 PrefabInstance:
   m_ObjectHideFlags: 0
