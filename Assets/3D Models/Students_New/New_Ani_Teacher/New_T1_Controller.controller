@@ -72,7 +72,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6d320855ec995b34e96f0383f8f764ed, type: 2}
+  m_Motion: {fileID: 7400000, guid: d6088566882b6974480a1ca0e0e499d9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -259,7 +259,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d74ab519c6be9ee418a712dfda3665ba, type: 2}
+  m_Motion: {fileID: 7400000, guid: e87876688c14a9d4088d36977d4dc3e7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -286,7 +286,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b4f761a25772429418c2d402fdd4f7d5, type: 2}
+  m_Motion: {fileID: 7400000, guid: b42c262efa7c9b044adf57357ffbf36d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -298,7 +298,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Teacher1_Controller
+  m_Name: New_T1_Controller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: IdleIndex

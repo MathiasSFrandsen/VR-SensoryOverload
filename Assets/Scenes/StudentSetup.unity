@@ -484,6 +484,30 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[4]'
       value: 
       objectReference: {fileID: 2100000, guid: 9541ef7b8985a1b4f96c10596b4b01cb, type: 2}
+    - target: {fileID: -4396642182433536433, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4396642182433536433, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[1]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4396642182433536433, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[2]'
+      value: 40.9
+      objectReference: {fileID: 0}
+    - target: {fileID: -4396642182433536433, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[3]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4396642182433536433, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[4]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4396642182433536433, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[5]'
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 212348891337940394, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -503,7 +527,7 @@ PrefabInstance:
     - target: {fileID: 5123006232486296865, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 5e0573f3265199045ac043dc1a19a9f8, type: 2}
+      objectReference: {fileID: 2100000, guid: 95f7f620240e54944bceb2203c94800c, type: 2}
     - target: {fileID: 5866666021909216657, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
       propertyPath: m_Controller
       value: 
@@ -511,11 +535,15 @@ PrefabInstance:
     - target: {fileID: 7922380334284891946, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 49f7c445fad7f5c4294c0e8fb240dbe0, type: 2}
+      objectReference: {fileID: 2100000, guid: dc6388bcaf1267046b22835d0168154e, type: 2}
     - target: {fileID: 8340465669433311683, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 742f94cdea7ffeb4db9994955c7dd4c1, type: 2}
+    - target: {fileID: 8802250033712750456, guid: 36b0be1eb11c1bf4a90cb9c5540c617b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
