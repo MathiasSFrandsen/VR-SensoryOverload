@@ -77,7 +77,6 @@ public class LightExposure : MonoBehaviour
         // 5. Smooth overgang
         currentExposure = Mathf.Lerp(currentExposure, targetExposure, Time.deltaTime * smoothSpeed);
         currentContrast = Mathf.Lerp(currentContrast, targetContrast, Time.deltaTime * smoothSpeed);
-         Debug.Log("BaseExposure: " + baseExposure + " | SpikeExposure: " + spikeExposure + " | CurrentExposure: " + currentExposure);
 
         // 6. Apply til volume
         colorAdjustments.postExposure.value = currentExposure;

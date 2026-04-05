@@ -52,6 +52,7 @@ public class HyperFocus : MonoBehaviour
 
     private AudioMixerGroup focusedGroup;
     private AudioMixerGroup unfocusedGroup;
+    
 
     void Start()
     {
@@ -136,7 +137,6 @@ public class HyperFocus : MonoBehaviour
                 targetFocalLength,
                 1 - Mathf.Exp(-smoothOutSpeed * Time.deltaTime)
             );
-            Debug.Log("FocalLength: " + dof.focalLength.value);
 
             // Fokusdistancen holdes konstant
             dof.focusDistance.value = 0.1f;
@@ -152,7 +152,6 @@ public class HyperFocus : MonoBehaviour
                 targetFocalLength,
                 1 - Mathf.Exp(-smoothInSpeed * Time.deltaTime)
             );
-            Debug.Log("FocalLength: " + dof.focalLength.value);
             // Fokusdistancen holdes konstant
             dof.focusDistance.value = 0.1f;
         }
@@ -214,8 +213,30 @@ public class HyperFocus : MonoBehaviour
     IEnumerator DisableAfterTime()
     {
         yield return new WaitForSeconds(disableAfterSeconds);
+        // Reset visual/audio state
+        if (currentTarget != null)
+        {
+            SetLayerRecursively(currentTarget, defaultLayer);
+            currentTarget = null;
+        }
 
-        // Slå scriptet fra
+        // Reset DOF immediately
+        if (dof != null)
+        {
+            dof.focalLength.value = 1f;
+            dof.focusDistance.value = 0.1f;
+        }
+
+        // Reset audio
+        currentFocusedVolume = normalFocusedVolume;
+        currentUnfocusedVolume = normalUnfocusedVolume;
+        currentLowpass = normalLowpass;
+
+        mixer.SetFloat(focusedVolumeParam, currentFocusedVolume);
+        mixer.SetFloat(unfocusedVolumeParam, currentUnfocusedVolume);
+        mixer.SetFloat(lowpassParam, currentLowpass);
+
+        // Finally disable the script
         this.enabled = false;
     }
 
