@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using System.Collections;
 
 public class HyperFocus : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class HyperFocus : MonoBehaviour
     [SerializeField] private string unfocusedVolumeParam = "VolumeUnfocused";
     [SerializeField] private string lowpassParam = "UnfocusedLowpass";
 
+    [SerializeField] private float disableAfterSeconds = 30f;
+
     private float currentFocusedVolume;
     private float currentUnfocusedVolume;
     private float currentLowpass;
@@ -71,6 +74,8 @@ public class HyperFocus : MonoBehaviour
         {
             globalVolume.profile.TryGet(out dof);
         }
+
+        StartCoroutine(DisableAfterTime());
     }
 
     void Update()
@@ -204,6 +209,14 @@ public class HyperFocus : MonoBehaviour
         {
             SetLayerRecursively(child.gameObject, layer);
         }
+    }
+
+    IEnumerator DisableAfterTime()
+    {
+        yield return new WaitForSeconds(disableAfterSeconds);
+
+        // Slå scriptet fra
+        this.enabled = false;
     }
 
     #endregion
