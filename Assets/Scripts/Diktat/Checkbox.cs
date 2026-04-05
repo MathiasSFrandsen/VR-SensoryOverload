@@ -18,9 +18,6 @@ public class Checkbox : MonoBehaviour
         // Placer præcis i midten af checkboxen
         spawnedCross.transform.localPosition = Vector3.zero;
 
-        // Arv rotation fra parent (meget vigtigt)
-        //spawnedCross.transform.localRotation = Quaternion.identity;
-
         isChecked = true;
     }
 

@@ -6,16 +6,31 @@ public class QuestionRow : MonoBehaviour
 
     public Checkbox boxOne;
     public Checkbox boxTwo;
+    public Checkbox boxThree;
 
     public Checkbox correctBox;
 
     public bool IsCorrectAnswer()
     {
-        // Kun korrekt svar hvis: den rigtige er checked & den anden ikke er checked
+       Checkbox selectedBox = null;
 
-        if (correctBox == boxOne)
-            return boxOne.IsChecked && !boxTwo.IsChecked;
-        else
-            return boxTwo.IsChecked && !boxOne.IsChecked;
+        // Find den valgte
+        if (boxOne.IsChecked) selectedBox = boxOne;
+        if (boxTwo.IsChecked)
+        {
+            if (selectedBox != null) return false; // flere valgt
+            selectedBox = boxTwo;
+        }
+        if (boxThree.IsChecked)
+        {
+            if (selectedBox != null) return false; // flere valgt
+            selectedBox = boxThree;
+        }
+
+        // Ingen valgt
+        if (selectedBox == null) return false;
+
+        // Tjek om det er den rigtige
+        return selectedBox == correctBox;
     }
 }
