@@ -7,13 +7,16 @@ public class FadeController : MonoBehaviour
 {
     [Header("UI Panel")]
     [SerializeField] private Image panel;
-    [SerializeField] private TMP_Text text; // Text to fade in
 
     [Header("Fade Settings")]
     [SerializeField] private float fadeInDuration = 3f;   // Fade from black to transparent
-    [SerializeField] private float fadeOutDuration = 10f; // Fade from transparent to black
+    [SerializeField] private float fadeOutDuration = 3f; // Fade from transparent to black
     [SerializeField] private float blackHoldDuration = 2f; // Hold black screen before/after fade
-    [SerializeField] private float autoFadeOutAfter = 60f; // Time before fade-out starts automatically
+    [SerializeField] private float autoFadeOutAfter = 10f; // Time before fade-out starts automatically
+    [SerializeField] private int nextSceneIndex = 1;
+
+    [Header("Reference to Script")]
+    [SerializeField] private HyperFocus hyperFocus;
 
 
     private void Awake()
@@ -45,6 +48,8 @@ public class FadeController : MonoBehaviour
 
         color.a = 0f;
         panel.color = color;
+
+        hyperFocus.enabled = true;
     }
 
     // Fade from transparent to black AND fade in text
@@ -53,15 +58,12 @@ public class FadeController : MonoBehaviour
         yield return new WaitForSeconds(autoFadeOutAfter);
 
         Color panelColor = panel.color;
-        Color textColor = text.color;
 
         float elapsed = 0f;
 
         // Ensure panel starts transparent and text invisible
         panelColor.a = 0f;
-        textColor.a = 0f;
         panel.color = panelColor;
-        text.color = textColor;
 
         while (elapsed < duration)
         {
@@ -72,18 +74,13 @@ public class FadeController : MonoBehaviour
             panelColor.a = Mathf.SmoothStep(0f, 1f, t);
             panel.color = panelColor;
 
-            // Fade in text at the same speed
-            textColor.a = Mathf.SmoothStep(0f, 1f, t);
-            text.color = textColor;
-
             yield return null;
         }
 
         panelColor.a = 1f;
-        textColor.a = 1f;
         panel.color = panelColor;
-        text.color = textColor;
-
         yield return new WaitForSeconds(blackHoldDuration);
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(nextSceneIndex);
     }
 }
