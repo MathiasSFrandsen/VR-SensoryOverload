@@ -47267,7 +47267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: m_Name
-      value: New_Student12
+      value: New_Student12_Pen
       objectReference: {fileID: 0}
     - target: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: m_Layer
@@ -48155,7 +48155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6574668262869163467, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6574668262869163467, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: m_TagString
@@ -48395,11 +48395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: maxIdleIndex
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: minIdleIndex
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: talkDirection
@@ -50604,7 +50604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: m_Name
-      value: New_Student16
+      value: New_Student16_Computer
       objectReference: {fileID: 0}
     - target: {fileID: 2460989408602715514, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: m_IsActive
@@ -100234,11 +100234,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341503568978824820, guid: a51e6769cc3c2cd4c847d160ea903be8, type: 3}
       propertyPath: exitTime
-      value: 40
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1341503568978824820, guid: a51e6769cc3c2cd4c847d160ea903be8, type: 3}
       propertyPath: enterTime
-      value: 20
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 1341503568978824820, guid: a51e6769cc3c2cd4c847d160ea903be8, type: 3}
       propertyPath: doorAnimator
@@ -100678,7 +100678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9008693878169234666, guid: a51e6769cc3c2cd4c847d160ea903be8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.055
+      value: -4.878
       objectReference: {fileID: 0}
     - target: {fileID: 9008693878169234666, guid: a51e6769cc3c2cd4c847d160ea903be8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -100686,7 +100686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9008693878169234666, guid: a51e6769cc3c2cd4c847d160ea903be8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.974
+      value: -2.761
       objectReference: {fileID: 0}
     - target: {fileID: 9008693878169234666, guid: a51e6769cc3c2cd4c847d160ea903be8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -103875,7 +103875,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 658baa7c1cfe10448b424a5755ba0bf5, type: 2}
     - target: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: m_Name
-      value: New_Student18_Pen
+      value: New_Student18
       objectReference: {fileID: 0}
     - target: {fileID: 2460989408602715514, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: m_IsActive
@@ -104599,7 +104599,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6574668262869163467, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6829164312986501050, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -104791,11 +104791,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: maxIdleIndex
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: minIdleIndex
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: talkDirection
