@@ -12,14 +12,17 @@ public class Sidekammerat : MonoBehaviour
     public bool randomizeSwitch = true;
 
     [Header("Talking Settings")]
-    public bool canTalk = false;              // Enable if this student should talk
-    public bool isSpecialStudent = false;     // Special mouth animation
-    public float talkTime = 60f;              // Time in seconds to start talking
-    public TalkDirection talkDirection = TalkDirection.None;
+    public bool canTalk = false;          // Enable talking
+    public float talkTime = 60f;          // Time in seconds to start talking
 
-    private bool hasTriggeredTalking = false; // Ensures talking triggers only once
+    private bool hasTriggeredTalking = false;
     private float timer = 0f;
     private float currentLoopDuration;
+
+    void Awake()
+    {
+        timer = 0f;
+    }
 
     void Start()
     {
@@ -37,31 +40,17 @@ public class Sidekammerat : MonoBehaviour
             animator.Play($"Idle{startIdle}");
     }
 
-    // Start timer on awake of the scene
-    void Awake()
-    {
-        timer = 0f;
-    }
-
     void Update()
     {
-        // Auto-trigger talking by time
+        // Trigger talking at specific time (does NOT interrupt idle)
         if (canTalk && !hasTriggeredTalking && Time.time >= talkTime)
         {
             hasTriggeredTalking = true;
-
-            // Default direction to Right if None
-            if (talkDirection == TalkDirection.None)
-                talkDirection = TalkDirection.Right;
-
             TriggerTalking();
-
-            // Stop Update from switching idle after talking
-            return;
         }
 
-        // Handle idle switching only if talking hasn't started
-        if (hasTriggeredTalking || !randomizeSwitch) return;
+        // Idle switching continues as normal
+        if (!randomizeSwitch) return;
 
         timer += Time.deltaTime;
         if (timer >= currentLoopDuration)
@@ -80,17 +69,12 @@ public class Sidekammerat : MonoBehaviour
         currentLoopDuration = animator.GetCurrentAnimatorStateInfo(0).length;
     }
 
-    // === TALKING METHOD ===
+    // Talking method (mouth layer) ===
     private void TriggerTalking()
     {
-        // Set the correct Animator bools
-        if (isSpecialStudent)
-            animator.SetBool("isSpecialTalking", true);
-        else
-            animator.SetBool("isTalking", true);
+        animator.SetBool("isSpecialTalking", true);
 
-        // Set direction
-        animator.SetInteger("TalkDirection", (int)talkDirection);
-
+        // Ensure mouth layer is active
+        animator.SetLayerWeight(1, 1f);
     }
 }

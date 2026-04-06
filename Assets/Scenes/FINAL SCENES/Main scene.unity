@@ -35413,11 +35413,25 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.009932168
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1821022419}
   m_SourcePrefab: {fileID: 100100000, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
+--- !u!1 &509188808 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
+  m_PrefabInstance: {fileID: 509188807}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &509188809 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4757422813779747614, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
+  m_PrefabInstance: {fileID: 509188807}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &510611082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123916,6 +123930,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1505871348567882084, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
   m_PrefabInstance: {fileID: 509188807}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1821022419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509188808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64206d2bccad518429a0da687954ddd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Sidekammerat
+  animator: {fileID: 509188809}
+  minIdleIndex: 1
+  maxIdleIndex: 5
+  randomizeSwitch: 1
+  canTalk: 1
+  talkTime: 241
 --- !u!1001 &1821906785
 PrefabInstance:
   m_ObjectHideFlags: 0
