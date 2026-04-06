@@ -39498,6 +39498,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Student 26
       objectReference: {fileID: 0}
+    - target: {fileID: 5761337937460009569, guid: 4f92fbf7b0b1f1743b47941c086a90ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5858455476765985074, guid: 4f92fbf7b0b1f1743b47941c086a90ea, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.00002877251
@@ -76933,7 +76937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5761337937460009569, guid: 4f92fbf7b0b1f1743b47941c086a90ea, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5858455476765985074, guid: 4f92fbf7b0b1f1743b47941c086a90ea, type: 3}
       propertyPath: m_LocalPosition.z
@@ -111036,7 +111040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5761337937460009569, guid: 4f92fbf7b0b1f1743b47941c086a90ea, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5858455476765985074, guid: 4f92fbf7b0b1f1743b47941c086a90ea, type: 3}
       propertyPath: m_LocalPosition.z
@@ -130841,8 +130845,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.606936, y: 1.6164798, z: 8.82402}
-  m_Center: {x: -2.7251499, y: 1.8608536, z: -3.7499409}
+  m_Size: {x: 1.8244671, y: 0.91404927, z: 1.3072492}
+  m_Center: {x: -0.21237648, y: 1.5096383, z: 0.008445978}
 --- !u!114 &1984362764
 MonoBehaviour:
   m_ObjectHideFlags: 0
