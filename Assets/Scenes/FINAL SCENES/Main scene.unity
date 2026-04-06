@@ -131291,8 +131291,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8244671, y: 0.91404927, z: 1.3072492}
-  m_Center: {x: -0.21237648, y: 1.5096383, z: 0.008445978}
+  m_Size: {x: 2.0335376, y: 0.9140494, z: 2.5792727}
+  m_Center: {x: -0.107841164, y: 1.5096383, z: 0.13319647}
 --- !u!114 &1984362764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142847,7 +142847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.838
+      value: -0.97
       objectReference: {fileID: 0}
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -143026,7 +143026,7 @@ MonoBehaviour:
   focusedVolumeParam: VolumeFocused
   unfocusedVolumeParam: VolumeUnfocused
   lowpassParam: UnfocusedLowpass
-  disableAfterSeconds: 30
+  disableAfterSeconds: 3000
 --- !u!114 &5769319790051193911
 MonoBehaviour:
   m_ObjectHideFlags: 0

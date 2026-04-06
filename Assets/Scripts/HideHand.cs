@@ -11,6 +11,6 @@ public class HideHand : MonoBehaviour
 
     public void EnableHand()
     {
-        hand.SetActive(false);
+        hand.SetActive(true);
     }
 }
