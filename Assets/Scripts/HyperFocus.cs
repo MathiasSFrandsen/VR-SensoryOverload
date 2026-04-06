@@ -41,6 +41,7 @@ public class HyperFocus : MonoBehaviour
     [SerializeField] private string unfocusedVolumeParam = "VolumeUnfocused";
     [SerializeField] private string lowpassParam = "UnfocusedLowpass";
 
+    [Header("Stop after X Seconds")]
     [SerializeField] private float disableAfterSeconds = 30f;
 
     private float currentFocusedVolume;
