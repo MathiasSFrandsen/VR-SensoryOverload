@@ -52630,11 +52630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: maxIdleIndex
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: minIdleIndex
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: talkDirection
@@ -52642,7 +52642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: randomizeSwitch
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: isSpecialStudent
