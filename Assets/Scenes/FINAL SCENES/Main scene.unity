@@ -14056,7 +14056,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 79987ff1423034bf184a623e3ee4bbe2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 79987ff1423034bf184a623e3ee4bbe2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -38510,7 +38510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GradualBlur
   globalVolume: {fileID: 832575518}
   targetFocalLength: 300
-  smoothSpeed: 0.00005
+  smoothSpeed: 0.0005
   delayBeforeBlur: 200
   shouldBlur: 0
 --- !u!4 &554061108
@@ -146057,7 +146057,7 @@ MonoBehaviour:
   targetExposureDown: 0
   targetContrastDown: 0
   smoothSpeed: 2
-  exposureIncreaseRate: 0.0005
+  exposureIncreaseRate: 0.005
   maxBaseExposure: 5
   spikeLerpSpeed: 5
 --- !u!1001 &6224809382513970900

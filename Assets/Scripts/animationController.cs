@@ -17,4 +17,10 @@ public class animationController : MonoBehaviour
         float triggerValue = triggerAction.action.ReadValue<float>();
         myAnimator.SetFloat("trigger", triggerValue);
     }
+
+    public void ResetHand()
+    {
+        myAnimator.SetFloat("trigger", 0);
+        myAnimator.SetFloat("grab", 0);
+    }
 }
