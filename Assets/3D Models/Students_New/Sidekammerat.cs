@@ -15,9 +15,15 @@ public class Sidekammerat : MonoBehaviour
     public bool canTalk = false;          // Enable talking
     public float talkTime = 60f;          // Time in seconds to start talking
 
+    [Header("Talk Interrupts")]
+    public float[] talkMoments;           // Times (in seconds) to play Talk_Left
+
     private bool hasTriggeredTalking = false;
     private float timer = 0f;
     private float currentLoopDuration;
+
+    private int talkIndex = 0;
+    private bool isPlayingTalkAnim = false;
 
     void Awake()
     {
@@ -49,8 +55,18 @@ public class Sidekammerat : MonoBehaviour
             TriggerTalking();
         }
 
-        // Idle switching continues as normal
-        if (!randomizeSwitch) return;
+        // Trigger Talk_Left at specified moments
+        if (hasTriggeredTalking && talkIndex < talkMoments.Length)
+        {
+            if (Time.time >= talkMoments[talkIndex])
+            {
+                StartCoroutine(PlayTalkLeft());
+                talkIndex++;
+            }
+        }
+
+        // Idle switching continues as normal (unless playing Talk_Left)
+        if (!randomizeSwitch || isPlayingTalkAnim) return;
 
         timer += Time.deltaTime;
         if (timer >= currentLoopDuration)
@@ -69,12 +85,28 @@ public class Sidekammerat : MonoBehaviour
         currentLoopDuration = animator.GetCurrentAnimatorStateInfo(0).length;
     }
 
-    // Talking method (mouth layer) ===
+    // Talking method (Mouth layer)
     private void TriggerTalking()
     {
         animator.SetBool("isSpecialTalking", true);
 
         // Ensure mouth layer is active
         animator.SetLayerWeight(1, 1f);
+    }
+
+    // Play (Talk_Left)
+    private IEnumerator PlayTalkLeft()
+    {
+        isPlayingTalkAnim = true;
+
+        // Play Talk_Left animation on base layer
+        animator.Play("Talk_Left", 0);
+
+        yield return null;
+
+        float animLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(animLength);
+
+        isPlayingTalkAnim = false;
     }
 }
