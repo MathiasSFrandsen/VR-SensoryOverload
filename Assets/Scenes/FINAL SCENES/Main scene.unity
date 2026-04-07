@@ -20209,8 +20209,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightBrightness
   targetLight: {fileID: 282855703}
-  targetIntensity: 5
-  speed: 1
+  targetIntensity: 70
+  speed: 0.0005
 --- !u!114 &282855702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28761,8 +28761,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightBrightness
   targetLight: {fileID: 435413491}
-  targetIntensity: 5
-  speed: 1
+  targetIntensity: 70
+  speed: 0.0005
 --- !u!114 &435413490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38799,8 +38799,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GradualBlur
   globalVolume: {fileID: 832575518}
-  targetFocalLength: 300
-  smoothSpeed: 0.0005
+  targetFocalLength: 6
+  smoothSpeed: 1
   delayBeforeBlur: 200
   shouldBlur: 0
 --- !u!4 &554061108
@@ -117128,7 +117128,6 @@ Transform:
   m_LocalScale: {x: 0.75, y: 0.735, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5769319790051193899}
   - {fileID: 675810607}
   - {fileID: 371830727}
   - {fileID: 1821022418}
@@ -135295,7 +135294,7 @@ Transform:
   m_GameObject: {fileID: 1991121214}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.01, y: 3.71, z: -5.58}
+  m_LocalPosition: {x: 1.01, y: 3.71, z: -5.05}
   m_LocalScale: {x: 2.904049, y: 2.904049, z: 2.904049}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -135408,8 +135407,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightBrightness
   targetLight: {fileID: 1991121217}
-  targetIntensity: 5
-  speed: 1
+  targetIntensity: 70
+  speed: 0.0005
 --- !u!1 &1999381127 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2fc806fdefbdf3240870c2eb2e931a96, type: 3}
@@ -146147,31 +146146,31 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1669520660}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.3333334
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.3605443
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.4285713
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.79
+      value: 2.0475
       objectReference: {fileID: 0}
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.97
+      value: 0.23105013
       objectReference: {fileID: 0}
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.804
+      value: -0.6371999
       objectReference: {fileID: 0}
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -146187,7 +146186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000014106499
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -146312,11 +146311,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 753994913133970467, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
   m_PrefabInstance: {fileID: 5769319790051193896}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5769319790051193899 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 95032618159389471, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
-  m_PrefabInstance: {fileID: 5769319790051193896}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5769319790051193905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146361,12 +146355,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LightExposure
   globalVolume: {fileID: 832575518}
   targetExposureUp: 3
-  targetContrastUp: 30
+  targetContrastUp: 0
   targetExposureDown: 0
   targetContrastDown: 0
   smoothSpeed: 2
-  exposureIncreaseRate: 0.005
-  maxBaseExposure: 5
+  exposureIncreaseRate: 0.002
+  maxBaseExposure: 1
   spikeLerpSpeed: 5
 --- !u!1001 &6224809382513970900
 PrefabInstance:
@@ -148415,6 +148409,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 832575519}
   - {fileID: 1187705833669123750}
+  - {fileID: 5769319790051193896}
   - {fileID: 686915059}
   - {fileID: 1030878798}
   - {fileID: 1113897250}
