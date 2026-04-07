@@ -102403,11 +102403,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1341503568978824820, guid: a51e6769cc3c2cd4c847d160ea903be8, type: 3}
       propertyPath: exitTime
-      value: 90
+      value: 122
       objectReference: {fileID: 0}
     - target: {fileID: 1341503568978824820, guid: a51e6769cc3c2cd4c847d160ea903be8, type: 3}
       propertyPath: enterTime
-      value: 72
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 1341503568978824820, guid: a51e6769cc3c2cd4c847d160ea903be8, type: 3}
       propertyPath: doorAnimator
