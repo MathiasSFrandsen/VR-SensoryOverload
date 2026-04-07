@@ -4586,11 +4586,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: talkTime
-      value: 205
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: maxIdleIndex
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: minIdleIndex
@@ -15757,7 +15757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: talkTime
-      value: 70
+      value: 205
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: maxIdleIndex
@@ -28195,7 +28195,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d07a178b32a090149b738344a19265f6, type: 2}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: canTalk
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: talkTime
@@ -49356,7 +49356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: canTalk
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: talkTime
@@ -49730,13 +49730,17 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.009932168
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 627047275}
+    - targetCorrespondingSourceObject: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 627047277}
   m_SourcePrefab: {fileID: 100100000, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
 --- !u!4 &627047273 stripped
 Transform:
@@ -49769,6 +49773,29 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 3.1092427, z: 1.8306016}
   m_Center: {x: 0, y: 1.3376247, z: 0.41530007}
+--- !u!95 &627047276 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4757422813779747614, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
+  m_PrefabInstance: {fileID: 627047272}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &627047277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627047274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a60d218c2be32d4fb86eaf6174310dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PenClickingStudent
+  animator: {fileID: 627047276}
+  minIdleIndex: 1
+  maxIdleIndex: 5
+  randomizeSwitch: 1
+  penClickStartTime: 140
+  penClickIndex: 6
 --- !u!4 &628483919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4953874896908796123, guid: 4f92fbf7b0b1f1743b47941c086a90ea, type: 3}
@@ -85531,11 +85558,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: talkTime
-      value: 205
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: maxIdleIndex
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: minIdleIndex
@@ -93236,11 +93263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7cc32f54f97b684d9c8f6a49f436948, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2843541
+      value: -1.28
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7cc32f54f97b684d9c8f6a49f436948, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.9142849
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7cc32f54f97b684d9c8f6a49f436948, type: 3}
       propertyPath: m_LocalRotation.w
@@ -96700,7 +96727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: talkTime
-      value: 70
+      value: 205
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: maxIdleIndex
@@ -123072,11 +123099,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7cc32f54f97b684d9c8f6a49f436948, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2843541
+      value: -1.28
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7cc32f54f97b684d9c8f6a49f436948, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.9142852
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e7cc32f54f97b684d9c8f6a49f436948, type: 3}
       propertyPath: m_LocalRotation.w
@@ -126594,6 +126621,18 @@ MonoBehaviour:
   randomizeSwitch: 1
   canTalk: 1
   talkTime: 241
+  talkMoments:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1001 &1821906785
 PrefabInstance:
   m_ObjectHideFlags: 0
