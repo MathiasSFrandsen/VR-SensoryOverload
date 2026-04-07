@@ -126910,8 +126910,8 @@ MonoBehaviour:
   minIdleIndex: 1
   maxIdleIndex: 5
   randomizeSwitch: 1
-  canTalk: 1
-  talkTime: 241
+  canTalk: 0
+  talkTime: 0
   talkMoments:
   - 0
   - 0
