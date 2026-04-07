@@ -100,7 +100,7 @@ public class Sidekammerat : MonoBehaviour
         isPlayingTalkAnim = true;
 
         // Play Talk_Left animation on base layer
-        animator.Play("TalkLeft", 0);
+        animator.CrossFade("TalkLeft", 0.2f);
 
         yield return null;
 
