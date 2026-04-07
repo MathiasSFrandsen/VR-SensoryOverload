@@ -50084,7 +50084,7 @@ MonoBehaviour:
   minIdleIndex: 1
   maxIdleIndex: 5
   randomizeSwitch: 1
-  penClickStartTime: 140
+  penClickStartTime: 153
   penClickIndex: 6
 --- !u!4 &628483919 stripped
 Transform:
