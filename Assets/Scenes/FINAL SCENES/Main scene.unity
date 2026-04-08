@@ -38801,7 +38801,7 @@ MonoBehaviour:
   globalVolume: {fileID: 832575518}
   targetFocalLength: 6
   smoothSpeed: 0.02
-  delayBeforeBlur: 241
+  delayBeforeBlur: 330
   shouldBlur: 0
 --- !u!4 &554061108
 Transform:
@@ -50031,6 +50031,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 627047277}
+    - targetCorrespondingSourceObject: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 627047278}
   m_SourcePrefab: {fileID: 100100000, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
 --- !u!4 &627047273 stripped
 Transform:
@@ -50086,6 +50089,20 @@ MonoBehaviour:
   randomizeSwitch: 1
   penClickStartTime: 153
   penClickIndex: 6
+--- !u!114 &627047278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627047274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b84dc36efb654c7cbf0ecfcf762ba1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActivateHyperFocus
+  delay: 153
+  targetTag: TargetObject
 --- !u!4 &628483919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4953874896908796123, guid: 4f92fbf7b0b1f1743b47941c086a90ea, type: 3}
@@ -135320,6 +135337,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f999357785da44cccb166b8ff66ec679, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1984125841}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f999357785da44cccb166b8ff66ec679, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1984125842}
   m_SourcePrefab: {fileID: 100100000, guid: f999357785da44cccb166b8ff66ec679, type: 3}
 --- !u!1 &1984125840 stripped
 GameObject:
@@ -135347,6 +135367,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0126163, y: 0.55307174, z: 0.70823306}
   m_Center: {x: -0.19904913, y: 0.048063945, z: -0.10284584}
+--- !u!114 &1984125842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984125840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b84dc36efb654c7cbf0ecfcf762ba1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActivateHyperFocus
+  delay: 60
+  targetTag: TargetObject
 --- !u!1001 &1984362761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135440,6 +135474,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9bf3ef61f5ae924469d69c6b2692dea8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1984362763}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9bf3ef61f5ae924469d69c6b2692dea8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1984362766}
   m_SourcePrefab: {fileID: 100100000, guid: 9bf3ef61f5ae924469d69c6b2692dea8, type: 3}
 --- !u!65 &1984362763
 BoxCollider:
@@ -135460,8 +135497,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.711236, y: 0.9140494, z: 3.1395085}
-  m_Center: {x: -0.9466902, y: 1.5096383, z: -0.1469214}
+  m_Size: {x: 3.711236, y: 1.5305156, z: 3.1395085}
+  m_Center: {x: -0.9466902, y: 1.8178715, z: -0.1469214}
 --- !u!114 &1984362764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135642,6 +135679,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1984362766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822032020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b84dc36efb654c7cbf0ecfcf762ba1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActivateHyperFocus
+  delay: 60
+  targetTag: TargetObject
 --- !u!1001 &1987103298
 PrefabInstance:
   m_ObjectHideFlags: 0
