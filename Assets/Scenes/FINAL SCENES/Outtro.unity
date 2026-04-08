@@ -1055,10 +1055,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Something about autism
+  m_text: "Det du oplevede, er baseret p\xE5 rigtige f\xF8lelser og oplevelser -
+    men ikke alle med autisme har det p\xE5 samme m\xE5de.\nNogle er f\xF8lsomme
+    over for lyd, andre over for lys eller ber\xF8ring. Nogle bliver overv\xE6ldet
+    i st\xF8jende rum. Andre slet ikke.\nIngen med autisme oplever verden helt ens"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 70c8fefc18a5a446e8e9d5f1a94ec950, type: 2}
-  m_sharedMaterial: {fileID: 6527458663559761866, guid: 70c8fefc18a5a446e8e9d5f1a94ec950, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1088,7 +1091,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 8
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
