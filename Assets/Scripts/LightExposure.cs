@@ -41,11 +41,11 @@ public class LightExposure : MonoBehaviour
 
     void Update()
     {
-        // 1. Gradually increase baseExposure over time
+        // Gradually increase baseExposure over time
         baseExposure += exposureIncreaseRate * Time.deltaTime;
         baseExposure = Mathf.Min(baseExposure, maxBaseExposure);
 
-        // 2. Raycast for lys
+        //Raycast for lys
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
 
@@ -59,26 +59,26 @@ public class LightExposure : MonoBehaviour
             }
         }
 
-        // 3. Spike logic
+        //Spike logic
         if (lookingAtLight)
         {
             spikeExposure = targetExposureUp; // Spike når man kigger på lys
         }
         else
         {
-            // Spike falder glidende til 0
+            //Spike falder glidende til 0
             spikeExposure = Mathf.Lerp(spikeExposure, 0f, Time.deltaTime * spikeLerpSpeed);
         }
 
-        // 4. Beregn target exposure: base + spike
+        //Beregn target exposure: base + spike
         float targetExposure = targetExposureDown + baseExposure + spikeExposure;
         float targetContrast = lookingAtLight ? targetContrastUp : targetContrastDown;
 
-        // 5. Smooth overgang
+        //Smooth overgang
         currentExposure = Mathf.Lerp(currentExposure, targetExposure, Time.deltaTime * smoothSpeed);
         currentContrast = Mathf.Lerp(currentContrast, targetContrast, Time.deltaTime * smoothSpeed);
 
-        // 6. Apply til volume
+        //Apply til volume
         colorAdjustments.postExposure.value = currentExposure;
         colorAdjustments.contrast.value = currentContrast;
     }
