@@ -9647,9 +9647,10 @@ GameObject:
   - component: {fileID: 206674161}
   - component: {fileID: 206674160}
   - component: {fileID: 206674162}
-  m_Layer: 0
+  - component: {fileID: 206674163}
+  m_Layer: 4
   m_Name: HyperFocusPapers
-  m_TagString: TargetObjectAudio
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9787,6 +9788,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &206674163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206674159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d917eccb769b4deabff7c7aa25b1f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FocusTarget
+  audioOnly: 1
 --- !u!1 &208990374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4649304590781711473, guid: c7bf6b9adb51552468290d9dd12e900b, type: 3}
@@ -50277,6 +50291,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 627047279}
+    - targetCorrespondingSourceObject: {fileID: 2282830985724945374, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 627047281}
   m_SourcePrefab: {fileID: 100100000, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
 --- !u!4 &627047273 stripped
 Transform:
@@ -50526,6 +50543,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &627047281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627047274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d917eccb769b4deabff7c7aa25b1f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FocusTarget
+  audioOnly: 0
 --- !u!4 &628483919 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4953874896908796123, guid: 4f92fbf7b0b1f1743b47941c086a90ea, type: 3}
@@ -135406,6 +135436,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f999357785da44cccb166b8ff66ec679, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1984125842}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f999357785da44cccb166b8ff66ec679, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1984125843}
   m_SourcePrefab: {fileID: 100100000, guid: f999357785da44cccb166b8ff66ec679, type: 3}
 --- !u!1 &1984125840 stripped
 GameObject:
@@ -135447,6 +135480,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ActivateHyperFocus
   delay: 60
   targetTag: TargetObject
+--- !u!114 &1984125843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984125840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d917eccb769b4deabff7c7aa25b1f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FocusTarget
+  audioOnly: 0
 --- !u!1001 &1984362761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135543,6 +135589,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9bf3ef61f5ae924469d69c6b2692dea8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1984362766}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9bf3ef61f5ae924469d69c6b2692dea8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1984362767}
   m_SourcePrefab: {fileID: 100100000, guid: 9bf3ef61f5ae924469d69c6b2692dea8, type: 3}
 --- !u!65 &1984362763
 BoxCollider:
@@ -135759,6 +135808,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ActivateHyperFocus
   delay: 60
   targetTag: TargetObject
+--- !u!114 &1984362767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822032020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d917eccb769b4deabff7c7aa25b1f0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FocusTarget
+  audioOnly: 0
 --- !u!1001 &1987103298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -147470,19 +147532,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7948500711994020156, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5769319790051193906}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
 --- !u!20 &5769319790051193897 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 753994913133970467, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
-  m_PrefabInstance: {fileID: 5769319790051193896}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5769319790051193898 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7948500711994020156, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
   m_PrefabInstance: {fileID: 5769319790051193896}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &5769319790051193905 stripped
@@ -147490,38 +147544,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2137455729459620388, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
   m_PrefabInstance: {fileID: 5769319790051193896}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5769319790051193898}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8a86b97f6fcef145b8b8dfd39910870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5769319790051193906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5769319790051193898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef3a9d94033e54f8ebe2c62022f48371, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HyperFocusAudioOnly
-  maxDistance: 100
-  tagName: TargetObjectAudio
-  mixer: {fileID: 24100000, guid: c719ed4bd7975ce49bc4f08fdc4e758c, type: 2}
-  normalFocusedVolume: 0
-  normalUnfocusedVolume: 0
-  normalLowpass: 22000
-  focusFocusedVolume: 8
-  focusUnfocusedVolume: -20
-  focusLowpass: 800
-  audioTransitionSpeed: 2
-  focusedVolumeParam: VolumeFocused
-  unfocusedVolumeParam: VolumeUnfocused
-  lowpassParam: UnfocusedLowpass
-  disableAfterSeconds: 30
 --- !u!1001 &6224809382513970900
 PrefabInstance:
   m_ObjectHideFlags: 0
