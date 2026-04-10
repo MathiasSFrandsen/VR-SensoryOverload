@@ -6,10 +6,6 @@ using System.Collections;
 
 public class HyperFocus : MonoBehaviour
 {
-    [Header("Mode")]
-    [SerializeField] private bool audioOnlyMode = false;
-    [SerializeField] private string tagName = "TargetObject";
-
     [Header("Visual Focus")]
     [SerializeField] private Volume globalVolume;
     private DepthOfField dof;
@@ -24,11 +20,12 @@ public class HyperFocus : MonoBehaviour
 
     [Header("Raycast Settings")]
     [SerializeField] private float maxDistance = 10f;
+    [SerializeField] private string tagName = "TargetObject";
 
     [Header("Audio Mixer")]
     [SerializeField] private AudioMixer mixer;
 
-    [Header("Normal State")]
+    [Header("Normal State (No Focus)")]
     [SerializeField] private float normalFocusedVolume = 0f;
     [SerializeField] private float normalUnfocusedVolume = 0f;
     [SerializeField] private float normalLowpass = 22000f;
@@ -43,7 +40,6 @@ public class HyperFocus : MonoBehaviour
     [SerializeField] private string focusedVolumeParam = "VolumeFocused";
     [SerializeField] private string unfocusedVolumeParam = "VolumeUnfocused";
     [SerializeField] private string lowpassParam = "UnfocusedLowpass";
-
     [SerializeField] private float disableAfterSeconds = 30f;
 
     private float currentFocusedVolume;
@@ -51,101 +47,45 @@ public class HyperFocus : MonoBehaviour
     private float currentLowpass;
 
     private GameObject currentTarget;
-    private FocusTarget currentTargetData;
+    private AudioSource[] allAudioSources;
+    private AudioMixerGroup focusedGroup;
+    private AudioMixerGroup unfocusedGroup;
 
     void Start()
     {
+        // Layers
         focusLayer = LayerMask.NameToLayer(focusLayerName);
         defaultLayer = LayerMask.NameToLayer("Water");
 
+        // Audio setup
         currentFocusedVolume = normalFocusedVolume;
         currentUnfocusedVolume = normalUnfocusedVolume;
         currentLowpass = normalLowpass;
 
+        allAudioSources = FindObjectsOfType<AudioSource>();
+        focusedGroup = mixer.FindMatchingGroups("Focused")[0];
+        unfocusedGroup = mixer.FindMatchingGroups("Unfocused")[0];
+
+        // DOF setup (safe)
         if (globalVolume != null && globalVolume.profile != null)
         {
             globalVolume.profile.TryGet(out dof);
         }
 
-        Invoke(nameof(DisableSelf), disableAfterSeconds);
+        StartCoroutine(DisableAfterTime());
     }
 
     void Update()
     {
         HandleRaycast();
         UpdateAudio();
-
-        if (!audioOnlyMode)
-        {
-            UpdateDOF();
-        }
+        UpdateDOF();
     }
 
     void LateUpdate()
     {
-        if (!audioOnlyMode)
-        {
-            SyncCameras();
-        }
+        SyncCameras();
     }
-
-    #region Raycast
-
-    void HandleRaycast()
-    {
-        Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
-
-        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Collide))
-        {
-            // 1. Must have correct tag (eligibility check)
-            if (!hit.collider.CompareTag(tagName))
-            {
-                SetNewTarget(null, null);
-                return;
-            }
-
-            // 2. Must have FocusTarget component (behavior config)
-            FocusTarget target = hit.collider.GetComponentInParent<FocusTarget>();
-
-            if (target != null)
-            {
-                SetNewTarget(hit.collider.gameObject, target);
-                return;
-            }
-        }
-
-        SetNewTarget(null, null);
-    }
-
-    void SetNewTarget(GameObject newTarget, FocusTarget data)
-    {
-        if (newTarget == currentTarget && data == currentTargetData)
-            return;
-
-        if (!audioOnlyMode)
-        {
-            if (currentTarget != null)
-                SetLayerRecursively(currentTarget, defaultLayer);
-
-            if (newTarget != null)
-                SetLayerRecursively(newTarget, focusLayer);
-        }
-
-        currentTarget = newTarget;
-        currentTargetData = data;
-    }
-
-    void SetLayerRecursively(GameObject obj, int layer)
-    {
-        obj.layer = layer;
-
-        foreach (Transform child in obj.transform)
-        {
-            SetLayerRecursively(child.gameObject, layer);
-        }
-    }
-
-    #endregion
 
     #region Audio
 
@@ -164,26 +104,33 @@ public class HyperFocus : MonoBehaviour
         mixer.SetFloat(focusedVolumeParam, currentFocusedVolume);
         mixer.SetFloat(unfocusedVolumeParam, currentUnfocusedVolume);
         mixer.SetFloat(lowpassParam, currentLowpass);
+
+        foreach (AudioSource src in allAudioSources)
+        {
+            src.outputAudioMixerGroup =
+                (currentTarget != null && src.gameObject == currentTarget)
+                ? focusedGroup
+                : unfocusedGroup;
+        }
     }
 
     #endregion
 
-    #region Visual
+    #region Visual DOF
 
     void UpdateDOF()
     {
         if (dof == null) return;
 
-        bool audioOnlyTarget = currentTargetData != null && currentTargetData.audioOnly;
-
-        if (currentTarget == null || audioOnlyTarget)
+        if (currentTarget == null)
         {
             float targetFocalLength = 1f;
+            float smoothOutSpeed = 2f;
 
             dof.focalLength.value = Mathf.Lerp(
                 dof.focalLength.value,
                 targetFocalLength,
-                1 - Mathf.Exp(-2f * Time.deltaTime)
+                1 - Mathf.Exp(-smoothOutSpeed * Time.deltaTime)
             );
 
             dof.focusDistance.value = 0.1f;
@@ -191,11 +138,12 @@ public class HyperFocus : MonoBehaviour
         else
         {
             float targetFocalLength = 80f;
+            float smoothInSpeed = 0.1f;
 
             dof.focalLength.value = Mathf.Lerp(
                 dof.focalLength.value,
                 targetFocalLength,
-                1 - Mathf.Exp(-0.1f * Time.deltaTime)
+                1 - Mathf.Exp(-smoothInSpeed * Time.deltaTime)
             );
 
             dof.focusDistance.value = 0.1f;
@@ -213,13 +161,66 @@ public class HyperFocus : MonoBehaviour
 
     #endregion
 
-    #region Disable
+    #region Raycast
 
-    void DisableSelf()
+    void HandleRaycast()
     {
-        currentTarget = null;
-        currentTargetData = null;
+        Ray ray = new Ray(transform.position, transform.forward);
 
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance))
+        {
+            if (hit.collider.CompareTag(tagName))
+            {
+                SetNewTarget(hit.collider.gameObject);
+                return;
+            }
+        }
+
+        SetNewTarget(null);
+    }
+
+    void SetNewTarget(GameObject newTarget)
+    {
+        if (newTarget == currentTarget) return;
+
+        if (currentTarget != null)
+            SetLayerRecursively(currentTarget, defaultLayer);
+
+        if (newTarget != null)
+            SetLayerRecursively(newTarget, focusLayer);
+
+        currentTarget = newTarget;
+    }
+
+    void SetLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+
+        foreach (Transform child in obj.transform)
+        {
+            SetLayerRecursively(child.gameObject, layer);
+        }
+    }
+
+    IEnumerator DisableAfterTime()
+    {
+        yield return new WaitForSeconds(disableAfterSeconds);
+
+        // Reset visual/audio state
+        if (currentTarget != null)
+        {
+            SetLayerRecursively(currentTarget, defaultLayer);
+            currentTarget = null;
+        }
+
+        // Reset DOF immediately
+        if (dof != null)
+        {
+            dof.focalLength.value = 1f;
+            dof.focusDistance.value = 0.1f;
+        }
+
+        // Reset audio
         currentFocusedVolume = normalFocusedVolume;
         currentUnfocusedVolume = normalUnfocusedVolume;
         currentLowpass = normalLowpass;
@@ -228,6 +229,7 @@ public class HyperFocus : MonoBehaviour
         mixer.SetFloat(unfocusedVolumeParam, currentUnfocusedVolume);
         mixer.SetFloat(lowpassParam, currentLowpass);
 
+        // Finally disable script
         this.enabled = false;
     }
 
