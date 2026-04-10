@@ -17,6 +17,7 @@ public class HyperFocus : MonoBehaviour
 
     private int focusLayer;
     private int defaultLayer;
+    [SerializeField] private bool audioOnlyMode = false;
 
     [Header("Raycast Settings")]
     [SerializeField] private float maxDistance = 10f;
@@ -79,6 +80,10 @@ public class HyperFocus : MonoBehaviour
     {
         HandleRaycast();
         UpdateAudio();
+
+        if (audioOnlyMode)
+            return;
+
         UpdateDOF();
     }
 
@@ -171,11 +176,23 @@ public class HyperFocus : MonoBehaviour
         {
             if (hit.collider.CompareTag(tagName))
             {
+                FocusTarget target = hit.collider.GetComponentInParent<FocusTarget>();
+
+                if (target != null)
+                {
+                    audioOnlyMode = target.audioOnly;
+                }
+                else
+                {
+                    audioOnlyMode = false;
+                }
+
                 SetNewTarget(hit.collider.gameObject);
                 return;
             }
         }
 
+        audioOnlyMode = false;
         SetNewTarget(null);
     }
 
@@ -183,11 +200,14 @@ public class HyperFocus : MonoBehaviour
     {
         if (newTarget == currentTarget) return;
 
-        if (currentTarget != null)
-            SetLayerRecursively(currentTarget, defaultLayer);
+        if (!audioOnlyMode)
+        {
+            if (currentTarget != null)
+                SetLayerRecursively(currentTarget, defaultLayer);
 
-        if (newTarget != null)
-            SetLayerRecursively(newTarget, focusLayer);
+            if (newTarget != null)
+                SetLayerRecursively(newTarget, focusLayer);
+        }
 
         currentTarget = newTarget;
     }

@@ -9650,7 +9650,7 @@ GameObject:
   - component: {fileID: 206674163}
   m_Layer: 4
   m_Name: HyperFocusPapers
-  m_TagString: Untagged
+  m_TagString: TargetObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135417,7 +135417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f999357785da44cccb166b8ff66ec679, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: TargetObject
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f999357785da44cccb166b8ff66ec679, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -147451,7 +147451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3604010844281707463, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_RenderPostProcessing
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3604010844281707463, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_VolumeLayerMask.m_Bits
