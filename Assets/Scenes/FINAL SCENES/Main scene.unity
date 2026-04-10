@@ -9636,6 +9636,59 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2616c3cd955c54acfafb914b276b9d0c, type: 3}
+--- !u!1 &206674159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 206674161}
+  - component: {fileID: 206674160}
+  m_Layer: 0
+  m_Name: HyperFocusPapers
+  m_TagString: TargetObjectAudio
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &206674160
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206674159}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.66670156, y: 0.306732, z: 1}
+  m_Center: {x: 0.16664922, y: -0.346634, z: 0}
+--- !u!4 &206674161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206674159}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.897, y: 1.146, z: -1.228}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &208990374 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4649304590781711473, guid: c7bf6b9adb51552468290d9dd12e900b, type: 3}
@@ -147319,11 +147372,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7948500711994020156, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5769319790051193906}
   m_SourcePrefab: {fileID: 100100000, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
 --- !u!20 &5769319790051193897 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 753994913133970467, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
+  m_PrefabInstance: {fileID: 5769319790051193896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5769319790051193898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7948500711994020156, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
   m_PrefabInstance: {fileID: 5769319790051193896}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &5769319790051193905 stripped
@@ -147331,12 +147392,38 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2137455729459620388, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
   m_PrefabInstance: {fileID: 5769319790051193896}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5769319790051193898}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8a86b97f6fcef145b8b8dfd39910870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5769319790051193906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5769319790051193898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3a9d94033e54f8ebe2c62022f48371, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HyperFocusAudioOnly
+  maxDistance: 100
+  tagName: TargetObjectAudio
+  mixer: {fileID: 24100000, guid: c719ed4bd7975ce49bc4f08fdc4e758c, type: 2}
+  normalFocusedVolume: 0
+  normalUnfocusedVolume: 0
+  normalLowpass: 22000
+  focusFocusedVolume: 8
+  focusUnfocusedVolume: -20
+  focusLowpass: 800
+  audioTransitionSpeed: 2
+  focusedVolumeParam: VolumeFocused
+  unfocusedVolumeParam: VolumeUnfocused
+  lowpassParam: UnfocusedLowpass
+  disableAfterSeconds: 30
 --- !u!1001 &6224809382513970900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -149503,3 +149590,4 @@ SceneRoots:
   - {fileID: 1268288634}
   - {fileID: 1767324739}
   - {fileID: 554061108}
+  - {fileID: 206674161}

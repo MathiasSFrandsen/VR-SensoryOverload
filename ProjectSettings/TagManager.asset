@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LightTrigger
   - TargetObject
+  - TargetObjectAudio
   layers:
   - Default
   - TransparentFX
