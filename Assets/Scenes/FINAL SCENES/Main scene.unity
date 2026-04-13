@@ -39399,8 +39399,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GradualBlur
   globalVolume: {fileID: 832575518}
   targetFocalLength: 6
-  smoothSpeed: 0.02
-  delayBeforeBlur: 330
+  smoothSpeed: 0.1
+  delayBeforeBlur: 350
   shouldBlur: 0
 --- !u!4 &554061108
 Transform:
@@ -43651,7 +43651,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: f622dadde347be041880afe3cd22d081, type: 3}
+  m_Resource: {fileID: 8300000, guid: 45a1f77c8ac04f3418cac2ddde49a867, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -147805,6 +147805,10 @@ PrefabInstance:
       propertyPath: globalVolume
       value: 
       objectReference: {fileID: 832575518}
+    - target: {fileID: 2137455729459620388, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
+      propertyPath: disableAfterSeconds
+      value: 340
+      objectReference: {fileID: 0}
     - target: {fileID: 3222644871919460370, guid: b27b6d5dc335842eb87a2864587134b2, type: 3}
       propertyPath: m_InteractionManager
       value: 
