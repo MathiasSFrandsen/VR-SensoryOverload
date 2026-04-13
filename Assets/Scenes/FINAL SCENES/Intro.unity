@@ -320,7 +320,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Under oplevelsen, er din opgave at svare p\xE5 14 sp\xF8rgsm\xE5l.\n\nDu
+  m_text: "Under oplevelsen, er din opgave at svare p\xE5 13 sp\xF8rgsm\xE5l.\n\nDu
     f\xE5r svarene ved at lytte til hvad l\xE6ren fort\xE6ller.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1517,7 +1517,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Lyt til, hvad l\xE6reren siger, og kryds svar af p\xE5 pairet undervejs
+  m_text: "Lyt til, hvad l\xE6reren siger, og kryds svar af p\xE5 papiret undervejs
     med blyanten. \n\nBrug \"Grab\" knappen til at gribe papir, blyant og viskel\xE6der."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1838,7 +1838,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Peg din controller mod pilen \nog brug \"Trigger\" knappen for at trykke
-    vidre"
+    videre"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3408,7 +3408,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
