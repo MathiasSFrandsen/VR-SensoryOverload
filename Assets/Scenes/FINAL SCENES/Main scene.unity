@@ -25429,11 +25429,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: maxIdleIndex
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: minIdleIndex
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7952245456836516652, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: talkDirection
@@ -36177,6 +36177,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -5.5484014
       objectReference: {fileID: 0}
+    - target: {fileID: 4757422813779747614, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9cf9ff16683221e43ab0fc6c8903711e, type: 2}
     - target: {fileID: 5028551823402380736, guid: bb2374644a96bb048996b8b5a92fbf1b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -128341,20 +128345,18 @@ MonoBehaviour:
   minIdleIndex: 1
   maxIdleIndex: 5
   randomizeSwitch: 1
-  canTalk: 0
-  talkTime: 0
+  canTalk: 1
+  talkTime: 240
   talkMoments:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 240
+  - 248
+  - 276
+  - 301
+  - 309
+  - 340
+  - 363
+  - 379
+  - 405
 --- !u!1001 &1821906785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135846,7 +135848,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 6133bb6b6c52a1645ad6c15da5eff9fb, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.02
+  m_Volume: 0.005
   m_Pitch: 1
   Loop: 0
   Mute: 0
