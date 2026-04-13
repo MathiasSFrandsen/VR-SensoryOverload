@@ -6,6 +6,12 @@ using System.Collections;
 
 public class HyperFocus : MonoBehaviour
 {
+    [Header("Timer Delay Audio Delay")]
+    [SerializeField] private float audioOnlyFocusDelay = 5f;
+    private GameObject pendingTarget;
+    private float focusTimer = 0f;
+
+
     [Header("Visual Focus")]
     [SerializeField] private Volume globalVolume;
     private DepthOfField dof;
@@ -187,12 +193,41 @@ public class HyperFocus : MonoBehaviour
                     audioOnlyMode = false;
                 }
 
-                SetNewTarget(hit.collider.gameObject);
+                GameObject hitObject = hit.collider.gameObject;
+
+                // AUDIO ONLY MODE → delayed focus
+                if (audioOnlyMode)
+                {
+                    if (hitObject == pendingTarget)
+                    {
+                        focusTimer += Time.deltaTime;
+
+                        if (focusTimer >= audioOnlyFocusDelay)
+                        {
+                            SetNewTarget(hitObject);
+                            pendingTarget = null;
+                            focusTimer = 0f;
+                        }
+                    }
+                    else
+                    {
+                        pendingTarget = hitObject;
+                        focusTimer = 0f;
+                    }
+
+                    return;
+                }
+
+                // NORMAL MODE → instant focus
+                SetNewTarget(hitObject);
                 return;
             }
         }
 
+        // No hit → reset
         audioOnlyMode = false;
+        pendingTarget = null;
+        focusTimer = 0f;
         SetNewTarget(null);
     }
 
