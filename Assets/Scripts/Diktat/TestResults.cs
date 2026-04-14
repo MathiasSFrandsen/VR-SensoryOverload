@@ -30,7 +30,7 @@ public class TestResults : MonoBehaviour
 
     public void SubmitTest()
     {
-        string path = Application.dataPath + "/TestResult.txt";
+        string path = Application.persistentDataPath + "/TestResult.txt";
         int totalQuestions = rows.Length;
         int correctAnswers = 0;
 
