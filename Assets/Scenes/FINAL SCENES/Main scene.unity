@@ -50840,7 +50840,7 @@ MonoBehaviour:
   minIdleIndex: 1
   maxIdleIndex: 5
   randomizeSwitch: 1
-  penClickStartTime: 153
+  penClickStartTime: 154
   penClickIndex: 6
 --- !u!114 &627047278
 MonoBehaviour:
@@ -50854,7 +50854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b84dc36efb654c7cbf0ecfcf762ba1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActivateHyperFocus
-  delay: 153
+  delay: 154
   targetTag: TargetObject
 --- !u!114 &627047279
 MonoBehaviour:
